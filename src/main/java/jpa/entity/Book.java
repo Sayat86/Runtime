@@ -18,7 +18,7 @@ public class Book {
     private LocalDate date;
 
     @OneToMany(mappedBy = "book")
-    private List<AuthorBooks> books;
+    private List<AuthorBooks> authorBooks;
 
 
     public Long getId() {
@@ -45,11 +45,11 @@ public class Book {
         this.date = date;
     }
 
-    public List<AuthorBooks> getBooks() {
-        return books;
+    public List<AuthorBooks> getAuthorBooks() {
+        return authorBooks;
     }
 
-    public void setBooks(List<AuthorBooks> books) {
-        this.books = books;
+    public void setAuthorBooks(List<AuthorBooks> authorBooks) {
+        this.authorBooks = authorBooks;
     }
 }

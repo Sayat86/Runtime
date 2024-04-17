@@ -17,7 +17,7 @@ public class Author {
     private String lastName;
 
     @OneToMany(mappedBy = "author")
-    private List<AuthorBooks> authors;
+    private List<AuthorBooks> authorBooksList;
 
 
     public Long getId() {
@@ -44,11 +44,11 @@ public class Author {
         this.lastName = lastName;
     }
 
-    public List<AuthorBooks> getAuthors() {
-        return authors;
+    public List<AuthorBooks> getAuthorBooksList() {
+        return authorBooksList;
     }
 
-    public void setAuthors(List<AuthorBooks> authors) {
-        this.authors = authors;
+    public void setAuthorBooksList(List<AuthorBooks> authorBooksList) {
+        this.authorBooksList = authorBooksList;
     }
 }
