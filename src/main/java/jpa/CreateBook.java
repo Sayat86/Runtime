@@ -30,16 +30,9 @@ public class CreateBook {
             count++;
             System.out.println(count + ")" + authorList.get(i).getName());
         }
-        System.out.println("Введите ID автора книги");
-        String author = scanner.nextLine();
 
-        Author authorFind = manager.find(Author.class, author);
-        while (authorFind == null) {
-            System.out.println("Введите правильное ID имя автора");
-            author = scanner.nextLine();
-            authorFind = manager.find(Author.class, author);
-        }
-        System.out.println(authorFind.getName());
+        System.out.println("Введите количество авторов у книги");
+        int countAuthor = Integer.parseInt(scanner.nextLine());
 
         try {
             manager.getTransaction().begin();
@@ -49,11 +42,22 @@ public class CreateBook {
             book.setDate(date);
             manager.persist(book);
 
+            for (int i = 0; i < countAuthor; i++) {
+                System.out.println("Введите ID автора книги");
+                String author = scanner.nextLine();
 
-            AuthorBooks authorBooks = new AuthorBooks();
-            authorBooks.setBook(book);
-            authorBooks.setAuthor(authorFind);
-            manager.persist(authorBooks);
+                Author authorFind = manager.find(Author.class, author);
+                while (authorFind == null) {
+                    System.out.println("Введите правильное ID имя автора");
+                    author = scanner.nextLine();
+                    authorFind = manager.find(Author.class, author);
+                }
+                System.out.println(authorFind.getName());
+                AuthorBooks authorBooks = new AuthorBooks();
+                authorBooks.setBook(book);
+                authorBooks.setAuthor(authorFind);
+                manager.persist(authorBooks);
+            }
 
 
             manager.getTransaction().commit();
